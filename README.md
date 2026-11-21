@@ -24,7 +24,12 @@ NZS 3404.3:2026 corrosivity. Output is JSON and a drafted report section (HTML) 
 
 All results are screening outputs for a suitably qualified engineer to confirm.
 
-## Install
+## Quick start
+
+Install Python 3.11 or newer, then double-click `run.bat` (Windows) or run `./run.sh` (Mac, Linux). The first run
+installs everything and takes several minutes; after that it starts straight away and opens your browser.
+
+## Manual install
 
 Requires Python 3.11 or newer.
 
