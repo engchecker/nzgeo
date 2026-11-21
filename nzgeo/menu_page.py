@@ -30,13 +30,9 @@ details summary{cursor:pointer;font-weight:600}[hidden]{display:none!important}u
 <header><h1>NZ Site Hazards</h1><small>Version __VERSION__ · draft reports for engineer review</small></header>
 <main>
 
-<section class="step"><h2><span class="num">1</span>What do you want to produce?</h2>
-<div class="cards" id="types">
-<label class="card"><input type="radio" name="rt" value="desk"><b>Geotechnical desk study</b><span>Geology, faults, seismic, council hazards, NZS 3604 exposure and NZS 3404.3 corrosivity.</span></label>
-<label class="card"><input type="radio" name="rt" value="iga" checked><b>Initial geotechnical assessment</b><span>Desk study plus your Scala/hand auger spreadsheet and site photos, checked to NZS 3604 clause 3.3.</span></label>
-</div></section>
+<div id="types" hidden><input type="radio" name="rt" value="iga" checked></div>
 
-<section class="step" id="s-field"><h2><span class="num">2</span>Upload the field spreadsheet and photos</h2>
+<section class="step" id="s-field"><h2><span class="num">1</span>Upload the field spreadsheet and photos</h2>
 <p class="hint">Upload the soil suitability spreadsheet (.xlsm or .xlsx) first: the address and project details are read from it. Then add the site photos.</p>
 <label for="wb">Field spreadsheet</label><input id="wb" type="file" accept=".xlsm,.xlsx">
 <div id="wb-out"></div>
@@ -53,7 +49,7 @@ details summary{cursor:pointer;font-weight:600}[hidden]{display:none!important}u
 </details>
 </section>
 
-<section class="step"><h2><span class="num" id="n-site">3</span>Find the site</h2>
+<section class="step"><h2><span class="num" id="n-site">2</span>Find the site</h2>
 <p class="hint">Type the street address (e.g. <i>1 Lambton Quay, Wellington</i>). If it is not found, type the legal description (e.g. <i>Lot 2 DP 12345</i>). Otherwise click the site on the map.</p>
 <div class="searchbar"><input id="q" type="text" placeholder="Address, or Lot and DP number" autocomplete="off"><button id="find" type="button">Find</button></div>
 <ul id="results"></ul>
@@ -61,7 +57,7 @@ details summary{cursor:pointer;font-weight:600}[hidden]{display:none!important}u
 <div id="site-box" class="box" hidden></div>
 </section>
 
-<section class="step" id="s-proj"><h2><span class="num" id="n-proj">4</span>Project details</h2>
+<section class="step" id="s-proj"><h2><span class="num" id="n-proj">3</span>Project details</h2>
 <p class="hint">Filled from the spreadsheet where it has them. Check and complete.</p>
 <div class="row">
 <div><label for="p-client">Client</label><input id="p-client" type="text"></div>
@@ -115,7 +111,7 @@ details summary{cursor:pointer;font-weight:600}[hidden]{display:none!important}u
 <div class="actions"><button id="open-wind" type="button">Open the wind calculator</button><span id="wind-status" class="muted">Not saved yet.</span></div>
 </section>
 
-<section class="step"><h2><span class="num" id="n-go">6</span>Create the report</h2>
+<section class="step"><h2><span class="num" id="n-go">4</span>Create the report</h2>
 <div class="actions"><button id="go" type="button">Preview report</button><button id="word" type="button">Download Word document</button><button id="xl" type="button" class="ghost" hidden>Download spreadsheet with desk study filled in</button><span id="msg" class="muted" role="status"></span></div>
 <p class="hint" style="margin-top:8px">The preview opens in a new tab with a <b>Download Word document</b> button; highlighted text needs your input. The first report for a council can take a minute while its hazard maps are looked up. Use the browser's Print → Save as PDF to file it.</p>
 </section>
