@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.env
+.venv/
+.pytest_cache/
+*.enc
+.nzgeo-data-key
+*.key
