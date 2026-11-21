@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site Wind Speed</title>
+<link rel="stylesheet" href="static/vendor/maplibre-gl.css">
+<link rel="stylesheet" href="static/vendor/mapillary.css">
+<link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+<header class="bar">
+  <h1>Site wind speed <span class="std">AS/NZS 1170.2:2021</span></h1>
+  <div class="bar-actions">
+    <span id="data-version" class="muted"></span>
+    <a id="to-menu" class="ghost" href="/" style="text-decoration:none">← Menu</a>
+    <button type="button" id="save-job" hidden>Save to report</button>
+    <button type="button" id="print" class="ghost">Print calculation</button>
+  </div>
+</header>
+
+<p id="save-status" class="small" role="status" hidden></p>
+<section class="print-only" id="print-summary"></section>
+
+<main class="layout">
+  <form id="inputs" class="inputs" autocomplete="off" novalidate>
+    <fieldset>
+      <legend>Site</legend>
+      <div class="search">
+        <label for="q">Find site</label>
+        <div class="search-row">
+          <input id="q" name="q" type="search" placeholder="Address, Lot 2 DP 12345, or -41.29, 174.78">
+          <button type="button" id="find">Find</button>
+        </div>
+        <ul id="search-results" class="search-results" hidden></ul>
+      </div>
+      <p class="hint" id="site-hint">Or click the map to place the site.</p>
+      <div class="grid2">
+        <label>Latitude<input name="lat" type="number" step="0.000001" inputmode="decimal" placeholder="-41.2865"></label>
+        <label>Longitude<input name="lon" type="number" step="0.000001" inputmode="decimal" placeholder="174.7762"></label>
+      </div>
+      <p class="muted small" id="nztm"></p>
+      <button type="button" id="auto" class="auto-btn" disabled>Map terrain and topography</button>
+      <p class="small" id="auto-status" role="status"></p>
+      <div class="grid2">
+        <label>Wind region
+          <select name="region"></select>
+        </label>
+        <label>Ground elevation (m ASL) <span id="elev-src" class="src-tag" hidden>from LiDAR</span><input name="elevation_m" type="number" step="0.1" min="0" value="20"></label>
+      </div>
+      <p class="hint small"><span id="region-note">Set automatically from the digitised Figure 3.1(B) when the site is chosen. Confirm near region boundaries.</span></p>
+    </fieldset>
+
+    <fieldset>
+      <legend>New building</legend>
+      <label>Building or job reference<input name="name" type="text" placeholder="e.g. 24-118 Smith Street warehouse"></label>
+      <div class="grid2">
+        <label>Eaves height (m)<input name="eaves_height_m" type="number" step="0.1" min="0" value="4.0"></label>
+        <label>Ridge height (m)<input name="ridge_height_m" type="number" step="0.1" min="0" value="6.0"></label>
+        <label>Length (m)<input name="length_m" type="number" step="0.1" min="0" value="24"></label>
+        <label>Width (m)<input name="width_m" type="number" step="0.1" min="0" value="12"></label>
+        <label>Long-axis bearing (° from true north)<input name="orientation_deg" type="number" step="1" min="0" max="359" value="0"></label>
+        <label>Reference height z (m)<input name="reference_height_m" type="number" step="0.1" min="0" placeholder="= h"></label>
+      </div>
+      <p class="derived">Average roof height h = <strong id="h-out">5.0</strong> m <span class="muted">(Figure 2.1, from natural ground at the roof centroid)</span></p>
+      <label class="check"><input name="circular_section" type="checkbox"><span>Circular or polygonal section (chimney, tank, pole), so M<sub>d</sub> = 1.0</span></label>
+    </fieldset>
+
+    <fieldset>
+      <legend>Design basis (AS/NZS 1170.0)</legend>
+      <div class="grid2">
+        <label>Importance level
+          <select name="importance_level">
+            <option value="1">IL1</option><option value="2" selected>IL2</option>
+            <option value="3">IL3</option><option value="4">IL4</option>
+          </select>
+        </label>
+        <label>Design working life <select name="design_life"></select></label>
+      </div>
+      <div class="segmented" role="radiogroup" aria-label="Limit state">
+        <label><input type="radio" name="limit_state" value="ULS" checked><span>Ultimate</span></label>
+        <label><input type="radio" name="limit_state" value="SLS1"><span>Serviceability (SLS1)</span></label>
+      </div>
+    </fieldset>
+  </form>
+
+  <section class="work">
+    <div class="map-wrap">
+      <div id="map" aria-label="Site map"></div>
+      <div class="map-legend" id="map-legend">
+        <span><i class="sw sector"></i>Averaging window</span>
+        <span><i class="sw shield"></i>Shielding radius 20h</span>
+        <span class="tc-key" id="tc-key" hidden>
+          <i class="sw" style="background:var(--tc1)"></i>TC1 <i class="sw" style="background:var(--tc2)"></i>TC2
+          <i class="sw" style="background:var(--tc25)"></i>TC2.5 <i class="sw" style="background:var(--tc3)"></i>TC3
+          <i class="sw" style="background:var(--tc4)"></i>TC4
+        </span>
+      </div>
+      <div class="map-note" id="map-note" hidden></div>
+    </div>
+
+    <section class="directions" aria-labelledby="dir-title">
+      <div class="section-head">
+        <h2 id="dir-title">Site data by wind direction</h2>
+        <div class="copy-row">
+          <button type="button" id="copy-all" class="ghost">Copy this direction to all</button>
+        </div>
+      </div>
+      <div class="dir-tabs" id="dir-tabs" role="tablist"></div>
+      <div class="dir-editor" id="dir-editor"></div>
+      <div id="evidence" class="evidence"></div>
+    </section>
+
+    <section class="data-panel" id="data-panel" hidden aria-labelledby="data-title">
+      <details>
+        <summary><h2 id="data-title">Data used, assumptions and issues</h2></summary>
+        <div id="data-body"></div>
+      </details>
+    </section>
+
+    <section class="results" aria-labelledby="res-title" aria-live="polite">
+      <div class="section-head">
+        <h2 id="res-title">Results</h2>
+        <span class="muted" id="res-basis"></span>
+      </div>
+      <div id="results-empty" class="empty">Place the site and complete the terrain bands to calculate.</div>
+      <div id="results" hidden>
+        <div class="res-grid">
+          <figure class="rose-fig">
+            <svg id="rose" viewBox="-220 -220 440 440" role="img" aria-label="Site wind speed by direction"></svg>
+            <figcaption>V<sub>sit,β</sub> (m/s) for wind from each direction. The building outline is drawn at its true bearing.</figcaption>
+          </figure>
+          <div>
+            <h3>Design wind speed for each building face</h3>
+            <div class="vdes" id="vdes"></div>
+            <table class="tbl" id="res-table">
+              <thead><tr><th scope="col">Dir.</th><th scope="col">M<sub>d</sub></th><th scope="col">M<sub>z,cat</sub></th><th scope="col">M<sub>s</sub></th><th scope="col">M<sub>h</sub></th><th scope="col">M<sub>lee</sub></th><th scope="col">M<sub>t</sub></th><th scope="col">V<sub>sit,β</sub></th><th scope="col">Terrain range</th></tr></thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <div id="overrides"></div>
+        <ul id="warnings" class="warnings"></ul>
+      </div>
+      <div id="error" class="error" role="alert" hidden></div>
+    </section>
+  </section>
+</main>
+
+
+<dialog id="street" class="street">
+  <div class="street-head"><h2 id="street-title">Street-level view</h2><button type="button" class="ghost" id="street-close">Close</button></div>
+  <div id="mly" class="mly"></div>
+  <p class="small muted" id="street-note"></p>
+</dialog>
+
+<script src="static/vendor/maplibre-gl.js"></script>
+<script src="static/vendor/mapillary.js"></script>
+<script src="static/app.js"></script>
+</body>
+</html>

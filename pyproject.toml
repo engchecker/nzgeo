@@ -10,8 +10,9 @@ dependencies = ["httpx>=0.27", "shapely>=2.0", "pyproj>=3.6", "numpy>=1.26", "sc
 [project.optional-dependencies]
 test = ["pytest"]
 
-[tool.setuptools]
-packages = ["nzgeo", "nzwind", "nzwind.auto"]
+[tool.setuptools.packages.find]
+include = ["nzgeo", "nzwind", "nzwind.auto"]
+namespaces = false
 
 [tool.setuptools.package-data]
 nzgeo = ["data/*.json", "data/*.enc", "data/*.gz", "data/ts1170_5/*", "static/leaflet/*", "static/leaflet/images/*"]

@@ -15,7 +15,7 @@ if not exist .venv\Scripts\python.exe (
 )
 if not exist .venv\.installed (
   .venv\Scripts\python.exe -m pip install --quiet --upgrade pip
-  .venv\Scripts\python.exe -m pip install --quiet -e . || (echo Install failed. & pause & exit /b 1)
+  .venv\Scripts\python.exe -m pip install --prefer-binary -e . || (echo. & echo Install failed. Scroll up for the last error line, or send a screenshot of the END of this window. & pause & exit /b 1)
   echo done> .venv\.installed
 )
 echo Starting nzgeo at http://127.0.0.1:8765/  ^(close this window to stop^)

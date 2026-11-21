@@ -1,0 +1,1138 @@
+{
+ "version": "2026-11-05",
+ "count": 78,
+ "notes": [
+  "Every council's own services plus its regional council's are queried for each site.",
+  "status 'found' = a public ArcGIS service root was confirmed from a published layer URL (see evidence).",
+  "status 'runtime_search' = no root confirmed yet; the tool searches ArcGIS Online for public hazard layers owned by that council, and `nzgeo discover` writes any roots it finds to the local catalogue."
+ ],
+ "boundaries": {
+  "territorial": "https://services2.arcgis.com/vKb0s8tBIA3bdocZ/arcgis/rest/services/Territorial_Authority_2023/FeatureServer/0",
+  "regional": "https://services2.arcgis.com/vKb0s8tBIA3bdocZ/arcgis/rest/services/Regional_Council_2023/FeatureServer/0",
+  "note": "Stats NZ 2023 boundaries, CC BY 4.0; the regional layer name is checked against the org listing on first run"
+ },
+ "councils": [
+  {
+   "name": "Northland Regional Council",
+   "type": "regional",
+   "region": "Northland",
+   "rest_roots": [
+    "https://nrcmaps.nrc.govt.nz/imagery/rest/services",
+    "https://nrcmaps.nrc.govt.nz/server/rest/services",
+    "https://services2.arcgis.com/J8errK5dyxu7Xjf7/ArcGIS/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://nrcmaps.nrc.govt.nz/imagery/rest/services/Northland_Coastal_Erosion_Hazard_Zones/MapServer",
+    "https://services2.arcgis.com/J8errK5dyxu7Xjf7/ArcGIS/rest/services/Simplified_Coastal_Flood_Hazard_Zone0_Current/FeatureServer"
+   ],
+   "status": "found",
+   "note": "services2.arcgis.com/J8errK5dyxu7Xjf7 ownership inferred from layer names; confirm on first crawl"
+  },
+  {
+   "name": "Waikato Regional Council",
+   "type": "regional",
+   "region": "Waikato",
+   "rest_roots": [
+    "https://services.arcgis.com/2bzQ0Ix3iO7MItUa/ArcGIS/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://services.arcgis.com/2bzQ0Ix3iO7MItUa/ArcGIS/rest/services/WAIKATO_HAZ_TSUNAMI_DATA_Apr_2021/FeatureServer",
+    "https://services.arcgis.com/2bzQ0Ix3iO7MItUa/arcgis/rest/services/Regional_Flood_Hazard_Update/FeatureServer/0"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Bay of Plenty Regional Council",
+   "type": "regional",
+   "region": "Bay of Plenty",
+   "rest_roots": [
+    "https://gis.boprc.govt.nz/server2/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.boprc.govt.nz/server2/rest/services/BayOfPlentyMaps/Natural_Hazards/MapServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Hawke's Bay Regional Council",
+   "type": "regional",
+   "region": "Hawke's Bay",
+   "rest_roots": [
+    "https://hbmaps.hbrc.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://hbmaps.hbrc.govt.nz/arcgis/rest/services/HazardsPortal/Tsunami_Inundation/MapServer/0"
+   ],
+   "status": "found",
+   "note": "HazardsPortal folder holds the regional hazard layers, including Heretaunga Plains liquefaction"
+  },
+  {
+   "name": "Taranaki Regional Council",
+   "type": "regional",
+   "region": "Taranaki",
+   "rest_roots": [
+    "https://maps.trc.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://maps.trc.govt.nz/arcgis/rest/services/LocalMaps/Coastal_Portal/MapServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Horizons Regional Council",
+   "type": "regional",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [
+    "https://data-horizonsrc.opendata.arcgis.com"
+   ],
+   "shared_with": [],
+   "evidence": [
+    "https://data-horizonsrc.opendata.arcgis.com/maps/e98fcfef8c0843d8ac567bc6b39ea8ff/about"
+   ],
+   "status": "found",
+   "note": "Publishes through an ArcGIS Hub site; layers are found with the Hub search API"
+  },
+  {
+   "name": "Greater Wellington Regional Council",
+   "type": "regional",
+   "region": "Wellington",
+   "rest_roots": [
+    "https://mapping.gw.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://mapping.gw.govt.nz/arcgis/rest/services/GW/Flood_Hazards_Areas/MapServer",
+    "https://mapping.gw.govt.nz/arcgis/rest/services/GW/Emergencies_P/MapServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "West Coast Regional Council",
+   "type": "regional",
+   "region": "West Coast",
+   "rest_roots": [
+    "https://gis.niwa.co.nz/server/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.niwa.co.nz/server/rest/services/WCRC/WCRC_PROD_interactive/MapServer"
+   ],
+   "status": "found",
+   "note": "Hosted by Earth Sciences NZ (NIWA server); crawl limited to the WCRC folder"
+  },
+  {
+   "name": "Environment Canterbury",
+   "type": "regional",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services/Public/Canterbury_Liquefaction_Susceptibility/MapServer",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services/Public/River_and_Coastal_Hazards/MapServer"
+   ],
+   "status": "found",
+   "note": "Also hosts district plan services for Ashburton and Selwyn, and liquefaction layers for every Canterbury district"
+  },
+  {
+   "name": "Otago Regional Council",
+   "type": "regional",
+   "region": "Otago",
+   "rest_roots": [
+    "https://maps.orc.govt.nz/arcgis/rest/services",
+    "https://services6.arcgis.com/ALxeDxaeNjQo1Mf0/ArcGIS/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://services6.arcgis.com/ALxeDxaeNjQo1Mf0/ArcGIS/rest/services/FloodHazard_Otago_2024/FeatureServer",
+    "https://maps.orc.govt.nz/arcgis/rest/services/A___Land_below_1_100_year_Storm_Surge/MapServer/0"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Environment Southland",
+   "type": "regional",
+   "region": "Southland",
+   "rest_roots": [
+    "https://maps.es.govt.nz/server/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://maps.es.govt.nz/server/rest/services/Public/NaturalHazards/MapServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Auckland Council",
+   "type": "unitary",
+   "region": "Auckland",
+   "rest_roots": [
+    "https://services1.arcgis.com/n4yPwebTjJCmXB6W/ArcGIS/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://services1.arcgis.com/n4yPwebTjJCmXB6W/ArcGIS/rest/services/Flood_Plains/FeatureServer",
+    "https://services1.arcgis.com/n4yPwebTjJCmXB6W/ArcGIS/rest/services/Overland_Flow_Paths/FeatureServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Gisborne District Council",
+   "type": "unitary",
+   "region": "Gisborne",
+   "rest_roots": [
+    "https://maps.gdc.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://maps.gdc.govt.nz/arcgis/rest/services/Data/GDC_hazards/MapServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Tasman District Council",
+   "type": "unitary",
+   "region": "Tasman",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "Top of the South Maps; found by ArcGIS Online search at run time"
+  },
+  {
+   "name": "Nelson City Council",
+   "type": "unitary",
+   "region": "Nelson",
+   "rest_roots": [
+    "https://services1.arcgis.com/Y4k7lyf2XTGeQC6V/ArcGIS/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://services1.arcgis.com/Y4k7lyf2XTGeQC6V/ArcGIS/rest/services/Liquefaction_Hazard_Nelson/FeatureServer",
+    "https://services1.arcgis.com/Y4k7lyf2XTGeQC6V/ArcGIS/rest/services/Fault_Deformation_Overlay_Nelson/FeatureServer",
+    "https://services1.arcgis.com/Y4k7lyf2XTGeQC6V/ArcGIS/rest/services/Slope_Instability_Overlay_Nelson/FeatureServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Marlborough District Council",
+   "type": "unitary",
+   "region": "Marlborough",
+   "rest_roots": [
+    "https://gis.marlborough.govt.nz/server/rest/services"
+   ],
+   "hubs": [
+    "https://data-marlborough.opendata.arcgis.com"
+   ],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.marlborough.govt.nz/server/rest/services/DataPublic/ServicesPublic/MapServer"
+   ],
+   "status": "found",
+   "note": ""
+  },
+  {
+   "name": "Chatham Islands Council",
+   "type": "unitary",
+   "region": "Chatham Islands",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "No public map service found; national layers only"
+  },
+  {
+   "name": "Far North District Council",
+   "type": "territorial",
+   "region": "Northland",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Northland Regional Council"
+  },
+  {
+   "name": "Whangarei District Council",
+   "type": "territorial",
+   "region": "Northland",
+   "rest_roots": [
+    "https://geo.wdc.govt.nz/server/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://geo.wdc.govt.nz/server/rest/services/Liquefaction/MapServer",
+    "https://geo.wdc.govt.nz/server/rest/services/Floods/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Northland Regional Council"
+  },
+  {
+   "name": "Kaipara District Council",
+   "type": "territorial",
+   "region": "Northland",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Northland Regional Council"
+  },
+  {
+   "name": "Thames-Coromandel District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Hauraki District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Waikato District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Matamata-Piako District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Hamilton City Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Waipa District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Otorohanga District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "South Waikato District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Waitomo District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Taupo District Council",
+   "type": "territorial",
+   "region": "Waikato",
+   "rest_roots": [
+    "https://maps.taupodc.govt.nz/server/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://maps.taupodc.govt.nz/server/rest/services/districtplan/Flood_Hazard_Extent/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Waikato Regional Council"
+  },
+  {
+   "name": "Western Bay of Plenty District Council",
+   "type": "territorial",
+   "region": "Bay of Plenty",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Bay of Plenty Regional Council"
+  },
+  {
+   "name": "Tauranga City Council",
+   "type": "territorial",
+   "region": "Bay of Plenty",
+   "rest_roots": [
+    "https://gis.tauranga.govt.nz/server/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.tauranga.govt.nz/server/rest/services/fv_FloodRisk/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Bay of Plenty Regional Council"
+  },
+  {
+   "name": "Rotorua Lakes Council",
+   "type": "territorial",
+   "region": "Bay of Plenty",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Bay of Plenty Regional Council"
+  },
+  {
+   "name": "Whakatane District Council",
+   "type": "territorial",
+   "region": "Bay of Plenty",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Bay of Plenty Regional Council"
+  },
+  {
+   "name": "Kawerau District Council",
+   "type": "territorial",
+   "region": "Bay of Plenty",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Bay of Plenty Regional Council"
+  },
+  {
+   "name": "Opotiki District Council",
+   "type": "territorial",
+   "region": "Bay of Plenty",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Bay of Plenty Regional Council"
+  },
+  {
+   "name": "Wairoa District Council",
+   "type": "territorial",
+   "region": "Hawke's Bay",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Hawke's Bay Regional Council"
+  },
+  {
+   "name": "Hastings District Council",
+   "type": "territorial",
+   "region": "Hawke's Bay",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Hawke's Bay Regional Council"
+  },
+  {
+   "name": "Napier City Council",
+   "type": "territorial",
+   "region": "Hawke's Bay",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Hawke's Bay Regional Council"
+  },
+  {
+   "name": "Central Hawke's Bay District Council",
+   "type": "territorial",
+   "region": "Hawke's Bay",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Hawke's Bay Regional Council"
+  },
+  {
+   "name": "New Plymouth District Council",
+   "type": "territorial",
+   "region": "Taranaki",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Taranaki Regional Council"
+  },
+  {
+   "name": "Stratford District Council",
+   "type": "territorial",
+   "region": "Taranaki",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Taranaki Regional Council"
+  },
+  {
+   "name": "South Taranaki District Council",
+   "type": "territorial",
+   "region": "Taranaki",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Taranaki Regional Council"
+  },
+  {
+   "name": "Ruapehu District Council",
+   "type": "territorial",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Horizons Regional Council"
+  },
+  {
+   "name": "Whanganui District Council",
+   "type": "territorial",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Horizons Regional Council"
+  },
+  {
+   "name": "Rangitikei District Council",
+   "type": "territorial",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Horizons Regional Council"
+  },
+  {
+   "name": "Manawatu District Council",
+   "type": "territorial",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Horizons Regional Council"
+  },
+  {
+   "name": "Palmerston North City Council",
+   "type": "territorial",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Horizons Regional Council"
+  },
+  {
+   "name": "Tararua District Council",
+   "type": "territorial",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Horizons Regional Council"
+  },
+  {
+   "name": "Horowhenua District Council",
+   "type": "territorial",
+   "region": "Manawatu-Whanganui",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Horizons Regional Council"
+  },
+  {
+   "name": "Kapiti Coast District Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [
+    "https://maps.kapiticoast.govt.nz/server/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://maps.kapiticoast.govt.nz/server/rest/services/public"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "Porirua City Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [
+    "https://gis.wellingtonwater.co.nz/server1/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Wellington Water"
+   ],
+   "evidence": [
+    "https://gis.wellingtonwater.co.nz/server1/rest/services/Core_Data/PCC_Flood_Hazard_Layers/MapServer"
+   ],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "Upper Hutt City Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [
+    "https://maps.upperhutt.govt.nz/arcgis/rest/services",
+    "https://gis.wellingtonwater.co.nz/server1/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Wellington Water"
+   ],
+   "evidence": [
+    "https://maps.upperhutt.govt.nz/arcgis/rest/services/District_Plan_Hazards/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "Hutt City Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [
+    "https://gis.wellingtonwater.co.nz/server1/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Wellington Water"
+   ],
+   "evidence": [
+    "https://gis.wellingtonwater.co.nz/server1/rest/services"
+   ],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "Wellington City Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [
+    "https://gis.wcc.govt.nz/arcgis/rest/services",
+    "https://gis.wellingtonwater.co.nz/server1/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Wellington Water"
+   ],
+   "evidence": [
+    "https://gis.wcc.govt.nz/arcgis/rest/services/Environment/EarthquakeHazards/MapServer",
+    "https://gis.wellingtonwater.co.nz/server1/rest/services/Modelling/WCC_Combined_10year_Flood_Zones/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "Masterton District Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [
+    "https://gis.mstn.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.mstn.govt.nz/arcgis/rest/services/ResourceManagementAndPlanning/ManagementAreas/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "Carterton District Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "South Wairarapa District Council",
+   "type": "territorial",
+   "region": "Wellington",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Greater Wellington Regional Council"
+  },
+  {
+   "name": "Kaikoura District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services/Public/Canterbury_Liquefaction_Susceptibility/MapServer/4"
+   ],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Buller District Council",
+   "type": "territorial",
+   "region": "West Coast",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "West Coast Regional Council"
+  },
+  {
+   "name": "Grey District Council",
+   "type": "territorial",
+   "region": "West Coast",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "West Coast Regional Council"
+  },
+  {
+   "name": "Westland District Council",
+   "type": "territorial",
+   "region": "West Coast",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "West Coast Regional Council"
+  },
+  {
+   "name": "Hurunui District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Waimakariri District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gisservices.waimakariri.govt.nz/arcgis/rest/services",
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gisservices.waimakariri.govt.nz/arcgis/rest/services/District_Plan_2021/District_Plan_General/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Christchurch City Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ccc.govt.nz/arcgis/rest/services",
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gis.ccc.govt.nz/arcgis/rest/services/CorporateData/Hazard/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Selwyn District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gis3.ecan.govt.nz/arcgis/rest/services/Selwyn_DC/SDC_DistrictPlan/MapServer"
+   ],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Ashburton District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services/Ashburton_DC/ADC_DistrictPlan/MapServer"
+   ],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Timaru District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services/Public/Canterbury_Liquefaction_Susceptibility/MapServer/9"
+   ],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Mackenzie District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Waimate District Council",
+   "type": "territorial",
+   "region": "Canterbury",
+   "rest_roots": [
+    "https://gis4.waimatedc.govt.nz/arcgis/rest/services",
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gis4.waimatedc.govt.nz/arcgis/rest/services/RegulatoryData/Provisional_Liquefaction_Areas/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Environment Canterbury"
+  },
+  {
+   "name": "Waitaki District Council",
+   "type": "territorial",
+   "region": "Otago",
+   "rest_roots": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services",
+    "https://gis3.ecan.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [
+    "Environment Canterbury"
+   ],
+   "evidence": [
+    "https://gis.ecan.govt.nz/arcgis/rest/services/Public/Canterbury_Liquefaction_Susceptibility/MapServer/26"
+   ],
+   "status": "found",
+   "note": "Regional and shared services only; district layers found by ArcGIS Online search at run time",
+   "regional_council": "Otago Regional Council"
+  },
+  {
+   "name": "Central Otago District Council",
+   "type": "territorial",
+   "region": "Otago",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Otago Regional Council"
+  },
+  {
+   "name": "Queenstown-Lakes District Council",
+   "type": "territorial",
+   "region": "Otago",
+   "rest_roots": [
+    "https://gis.qldc.govt.nz/server/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.qldc.govt.nz/server/rest/services/Hazards/Liquefaction/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Otago Regional Council"
+  },
+  {
+   "name": "Dunedin City Council",
+   "type": "territorial",
+   "region": "Otago",
+   "rest_roots": [
+    "https://apps.dunedin.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://apps.dunedin.govt.nz/arcgis/rest/services/Public/SecondGenerationPlan_MappedAreas/MapServer"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Otago Regional Council"
+  },
+  {
+   "name": "Clutha District Council",
+   "type": "territorial",
+   "region": "Otago",
+   "rest_roots": [
+    "https://gis.cluthadc.govt.nz/arcgis/rest/services"
+   ],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [
+    "https://gis.cluthadc.govt.nz/arcgis/rest/services/GNSLiquefaction/MapServer/0"
+   ],
+   "status": "found",
+   "note": "",
+   "regional_council": "Otago Regional Council"
+  },
+  {
+   "name": "Southland District Council",
+   "type": "territorial",
+   "region": "Southland",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Environment Southland"
+  },
+  {
+   "name": "Gore District Council",
+   "type": "territorial",
+   "region": "Southland",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Environment Southland"
+  },
+  {
+   "name": "Invercargill City Council",
+   "type": "territorial",
+   "region": "Southland",
+   "rest_roots": [],
+   "hubs": [],
+   "shared_with": [],
+   "evidence": [],
+   "status": "runtime_search",
+   "note": "",
+   "regional_council": "Environment Southland"
+  }
+ ]
+}
