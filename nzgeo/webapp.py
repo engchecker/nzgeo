@@ -1,4 +1,4 @@
-"""NZ Site Hazards local web app: one menu for wind, desk study and field-testing reports.
+"""NZ Site Hazards local web app: one menu for desk study and field-testing reports.
 
 Start with:  python -m nzgeo serve      (the desktop icon does this)
 """
@@ -31,12 +31,14 @@ from pathlib import Path  # noqa: E402
 from fastapi.staticfiles import StaticFiles  # noqa: E402
 app.mount("/static", StaticFiles(directory=Path(__file__).resolve().parent / "static"), name="static")
 
-try:
-    from nzwind.api import app as wind_app
-    app.mount("/wind", wind_app)
-    WIND = True
-except Exception as e:  # pragma: no cover
-    WIND, WIND_ERR = False, f"{type(e).__name__}: {e}"
+WIND, WIND_ERR = False, "wind calculator disabled"
+if os.environ.get("NZGEO_ENABLE_WIND") == "1":   # wind calculator is hidden unless explicitly enabled
+    try:
+        from nzwind.api import app as wind_app
+        app.mount("/wind", wind_app)
+        WIND, WIND_ERR = True, ""
+    except Exception as e:  # pragma: no cover
+        WIND, WIND_ERR = False, f"{type(e).__name__}: {e}"
 
 
 @app.get("/wind", include_in_schema=False)

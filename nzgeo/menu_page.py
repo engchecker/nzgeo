@@ -32,10 +32,8 @@ details summary{cursor:pointer;font-weight:600}[hidden]{display:none!important}u
 
 <section class="step"><h2><span class="num">1</span>What do you want to produce?</h2>
 <div class="cards" id="types">
-<label class="card"><input type="radio" name="rt" value="wind"><b>Site wind speed report</b><span>AS/NZS 1170.2:2021 site wind speeds and building design wind speeds.</span></label>
 <label class="card"><input type="radio" name="rt" value="desk"><b>Geotechnical desk study</b><span>Geology, faults, seismic, council hazards, NZS 3604 exposure and NZS 3404.3 corrosivity.</span></label>
 <label class="card"><input type="radio" name="rt" value="iga" checked><b>Initial geotechnical assessment</b><span>Desk study plus your Scala/hand auger spreadsheet and site photos, checked to NZS 3604 clause 3.3.</span></label>
-<label class="card"><input type="radio" name="rt" value="combined"><b>Combined report</b><span>Wind speeds, desk study and field testing in one report.</span></label>
 </div></section>
 
 <section class="step" id="s-field"><h2><span class="num">2</span>Upload the field spreadsheet and photos</h2>

@@ -24,6 +24,8 @@ NZS 3404.3:2026 corrosivity. Output is JSON and a drafted report section (HTML) 
 
 All results are screening outputs for a suitably qualified engineer to confirm.
 
+> The site wind speed calculator (`nzwind`) is hidden for now. Set `NZGEO_ENABLE_WIND=1` to switch it back on; it also needs your own licensed standards bundle.
+
 ## Quick start
 
 Install Python 3.11 or newer, then double-click `run.bat` (Windows) or run `./run.sh` (Mac, Linux). The first run
