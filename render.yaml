@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: nzgeo
+    runtime: docker
+    plan: free
+    healthCheckPath: /healthz
+    envVars:
+      - key: NZGEO_PASSWORD
+        sync: false        # set in the Render dashboard
+      - key: LINZ_API_KEY
+        sync: false        # set in the Render dashboard (optional but needed for address/parcel lookups)

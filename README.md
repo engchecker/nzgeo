@@ -31,6 +31,12 @@ All results are screening outputs for a suitably qualified engineer to confirm.
 Install Python 3.11 or newer, then double-click `run.bat` (Windows) or run `./run.sh` (Mac, Linux). The first run
 installs everything and takes several minutes; after that it starts straight away and opens your browser.
 
+## Hosting online (Render)
+
+`render.yaml` and `Dockerfile` deploy it as a web service. In Render choose New, Blueprint, pick this repo, then set
+`NZGEO_PASSWORD` (a shared password; the username can be anything) and `LINZ_API_KEY`. On the free plan the service
+sleeps when idle and uploaded jobs do not persist.
+
 ## Manual install
 
 Requires Python 3.11 or newer.

@@ -14,6 +14,9 @@ from datetime import datetime, timezone
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 
+import base64
+import hmac
+
 from . import __version__, iga, jobs, locate
 from .api import router
 from .config import HOME_DIR, settings
@@ -26,6 +29,25 @@ if _WIND_KEY_FILE.exists() and not os.environ.get("NZWIND_DATA_KEY"):
     os.environ.setdefault("NZWIND_DATA_KEY_FILE", str(_WIND_KEY_FILE))
 
 app = FastAPI(title="NZ Site Hazards", version=__version__)
+
+
+@app.middleware("http")
+async def _password_gate(request, call_next):
+    """Optional shared password for hosted use: set NZGEO_PASSWORD (any username). Off when unset."""
+    pw = os.environ.get("NZGEO_PASSWORD")
+    if pw and request.url.path != "/healthz":
+        try:
+            given = base64.b64decode(request.headers.get("authorization", "")[6:]).decode().split(":", 1)[1]
+        except Exception:
+            given = None
+        if given is None or not hmac.compare_digest(given.encode(), pw.encode()):
+            return Response("Password required", status_code=401, headers={"WWW-Authenticate": 'Basic realm="nzgeo"'})
+    return await call_next(request)
+
+
+@app.get("/healthz", include_in_schema=False)
+def _healthz():
+    return {"ok": True}
 app.include_router(router)
 from pathlib import Path  # noqa: E402
 from fastapi.staticfiles import StaticFiles  # noqa: E402
@@ -260,4 +282,4 @@ def serve(port: int = 8765, open_browser: bool = True):
     print("  KEEP THIS WINDOW OPEN while you use the tool. Close it to stop.\n")
     if open_browser:
         threading.Timer(1.5, lambda: webbrowser.open(url)).start()
-    uvicorn.run(app, host="127.0.0.1", port=port, log_level="warning")
+    uvicorn.run(app, host=os.environ.get("NZGEO_HOST", "127.0.0.1"), port=port, log_level="warning")
